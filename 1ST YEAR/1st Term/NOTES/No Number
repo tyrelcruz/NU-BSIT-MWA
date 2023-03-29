@@ -1,0 +1,39 @@
+import java.io.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+public class remove {
+    public static void main(String[] args) throws IOException {
+        // Create a File object for the input file
+        File inputFile = new File("C:\\Users\\Tyrel\\Documents\\NetBeansProjects\\Practice\\src\\main\\java\\article.txt");
+
+        // Create a File object for the output file
+        File outputFile = new File("no_numbers.txt");
+
+        // Create a BufferedReader to read from the input file
+        BufferedReader reader = new BufferedReader(new FileReader(inputFile));
+
+        // Create a BufferedWriter to write to the output file
+        BufferedWriter writer = new BufferedWriter(new FileWriter(outputFile));
+
+        // Compile the regular expression for matching numbers
+        Pattern pattern = Pattern.compile("[0-9]");
+
+        String line;
+        while ((line = reader.readLine()) != null) {
+            // Apply the regular expression to the current line
+            Matcher matcher = pattern.matcher(line);
+
+            // Replace all occurrences of numbers with an empty string
+            String cleanedLine = matcher.replaceAll("");
+
+            // Write the cleaned line to the output file
+            writer.write(cleanedLine);
+            writer.newLine();
+        }
+
+        // Close the reader and writer
+        reader.close();
+        writer.close();
+    }
+}
