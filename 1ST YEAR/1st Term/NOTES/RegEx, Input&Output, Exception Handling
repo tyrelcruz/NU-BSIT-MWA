@@ -1,0 +1,33 @@
+import java.io.*;
+import java.util.regex.*;
+
+public class remove2 {
+    public static void main(String[] args) {
+        try {
+            // Open the input and output files
+            FileInputStream in = new FileInputStream("no_numbers.txt");
+            FileOutputStream out = new FileOutputStream("cleaned.txt");
+
+            // Read the input file into a string
+            byte[] bytes = new byte[in.available()];
+            in.read(bytes);
+            String input = new String(bytes);
+
+            // Create a regular expression pattern to match any character that is not a letter, hyphen, or space
+            Pattern pattern = Pattern.compile("[^a-zA-Z-\\s]+");
+
+            // Replace all matches of the pattern with an empty string
+            Matcher matcher = pattern.matcher(input);
+            String output = matcher.replaceAll("");
+
+            // Write the output to the output file
+            out.write(output.getBytes());
+
+            // Close the input and output files
+            in.close();
+            out.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
