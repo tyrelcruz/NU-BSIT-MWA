@@ -1,0 +1,42 @@
+import java.io.*;
+
+public class remove4 {
+
+    public static String convertToLowercase(String input) {
+        // Base case: if the input string is empty, return an empty string
+        if (input.length() == 0) {
+            return "";
+        }
+
+        // Recursive case: convert the first character to lowercase and call the function
+        // recursively on the rest of the string
+        char first = Character.toLowerCase(input.charAt(0));
+        String rest = convertToLowercase(input.substring(1));
+        return first + rest;
+    }
+
+    public static void main(String[] args) {
+        try {
+            // Open the input and output files
+            FileInputStream in = new FileInputStream("C:\\Users\\Tyrel\\Documents\\NetBeansProjects\\Practice\\src\\main\\java\\cleaned.txt");
+            FileOutputStream out = new FileOutputStream("final.txt");
+
+            // Read the input file into a string
+            byte[] bytes = new byte[in.available()];
+            in.read(bytes);
+            String input = new String(bytes);
+
+            // Convert the input string to lowercase
+            String output = convertToLowercase(input);
+
+            // Write the output to the output file
+            out.write(output.getBytes());
+
+            // Close the input and output files
+            in.close();
+            out.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
