@@ -1,0 +1,137 @@
+package com.mycompany.ccobjpgl;
+
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+
+        System.out.print("Enter student number: ");
+        int studentNumber = scanner.nextInt();
+        scanner.nextLine(); 
+        System.out.print("Enter student name: ");
+        String name = scanner.nextLine();
+        System.out.print("Enter course: ");
+        String course = scanner.nextLine();
+        System.out.print("Enter year: ");
+        int year = scanner.nextInt();
+        scanner.nextLine(); 
+
+        Student student = new Student(studentNumber, name, course, year);
+
+        student.getStudentDetails();
+        student.showStudentDetails();
+
+        System.out.print("Enter item number: ");
+        int itemNumber = scanner.nextInt();
+        scanner.nextLine(); 
+        System.out.print("Enter item description: ");
+        String itemDescription = scanner.nextLine();
+        System.out.print("Enter unit price: ");
+        double unitPrice = scanner.nextDouble();
+        System.out.print("Enter quantity on hand: ");
+        int quantityOnHand = scanner.nextInt();
+       
+        Item item = new Item(itemNumber, itemDescription, unitPrice, quantityOnHand);
+
+        item.displayItemInfo();
+        double inventoryValue = item.computeInventory();
+        System.out.println(" ");
+        System.out.println("Inventory Value: " + inventoryValue + " pesos ");
+
+        scanner.close();
+    }
+}
+
+//Student 
+//Properties: student number, name, course, year
+//Methods: getStudentDetails(), showStudentDetails()
+class Student {
+    int studentNumber;
+    String name;
+    String course;
+    int year;
+
+    public Student(int studentNumber, String name, String course, int year) {
+        this.studentNumber = studentNumber;
+        this.name = name;
+        this.course = course;
+        this.year = year;
+    }
+
+    public int getStudentNumber() {
+        return studentNumber;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getCourse() {
+        return course;
+    }
+
+    public int getYear() {
+        return year;
+    }
+
+    public void getStudentDetails() {
+        System.out.println("Student Number: " + studentNumber);
+        System.out.println("Name: " + name);
+        System.out.println("Course: " + course);
+        System.out.println("Year: " + year);
+    }
+
+    public void showStudentDetails() {
+        System.out.println(" ");
+        System.out.println("The Student " + name + "-" + studentNumber +" is currently studying " + course + " year " + year + ".\n");
+    }
+}
+
+//Item 
+//Properties: item number, item description, unit price,quantityon hand 
+//Methods: DisplayItemInfo(), ComputeInventory() Inventory=Quantity * Unit price
+class Item {
+    // Properties
+    int itemNumber;
+    String itemDescription;
+    double unitPrice;
+    int quantityOnHand;
+
+    public Item(int itemNumber, String itemDescription, double unitPrice, int quantityOnHand) {
+        this.itemNumber = itemNumber;
+        this.itemDescription = itemDescription;
+        this.unitPrice = unitPrice;
+        this.quantityOnHand = quantityOnHand;
+    }
+
+    public int getItemNumber() {
+        return itemNumber;
+    }
+
+    public String getItemDescription() {
+        return itemDescription;
+    }
+
+    public double getUnitPrice() {
+        return unitPrice;
+    }
+
+    public int getQuantityOnHand() {
+        return quantityOnHand;
+    }
+
+    public void displayItemInfo() {
+        System.out.println("Item Number: " + itemNumber);
+        System.out.println("Item Description: " + itemDescription);
+        System.out.println("Unit Price: " + unitPrice);
+        System.out.println("Quantity On Hand: " + quantityOnHand);
+    }
+
+    public double computeInventory() {
+        return unitPrice * quantityOnHand;
+
+    }
+}
+
