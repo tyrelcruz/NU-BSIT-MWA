@@ -1,0 +1,50 @@
+public class Person {
+    private String name;
+    private int age;
+    private String gender;
+    private String email; 
+
+    public Person (String name, int age, String gender, String email) {
+        this.name = name;
+        this.age = age;
+        this.gender = gender;
+        this.email = email;
+    }
+    public String getDetails() {
+        return "Name: " + name + "Age: " + age + "Gender: " + gender + "Email: " + email;
+    }
+    class student extends Person() {
+    String id;
+    String major;
+    double gpa;
+    }
+    public student (String name , int age , String gender , String email , String id , String major , double gpa) {
+        this.name = name;
+        this.age = age;
+        this.gender = gender;
+        this.email = email;
+        this.id = id;
+        this.major = major;
+        this.gpa = gpa;
+    }
+    public String getDetails() {
+        return "Name: " + name + "Age: " + age + "Gender: " + gender + "Email: " + email + "ID: " + id + "Major: " + major + "GPA: " + gpa;
+         
+    }
+
+    }   
+    }
+    
+   //===============================================================================================================//
+   
+public class Main {
+    public static void main(String[] args) {
+        Person person = new person("Tyrel Cruz" , "20" , "Male" , "cruztp@students.national-u.edu.ph");
+            System.out.println(person.getDetails());
+    }
+    public static void main(String[] args) {
+        Student student = new student("Tyrel Cruz", "20", "Male", "cruztp@students.national-u.edu.ph", "2022-104871", "BSIT - MWA", "4.0");
+            System.out.println(student.getDetails());
+    
+    }
+}
