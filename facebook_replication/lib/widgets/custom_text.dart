@@ -5,12 +5,13 @@ class CustomText extends StatelessWidget {
     super.key,
     required this.text,
     this.fontSize = 12,
-    this.fontFamily = 'Poppins',
+    this.fontFamily,
     this.fontWeight = FontWeight.normal,
     this.textAlign = TextAlign.left,
     this.letterSpacing = 0,
     this.maxLines,
     this.overflow,
+    this.fontStyle = FontStyle.normal,
   });
   final String text;
   final double fontSize, letterSpacing;
@@ -18,7 +19,7 @@ class CustomText extends StatelessWidget {
   final TextOverflow? overflow;
   final FontWeight fontWeight;
   final TextAlign textAlign;
-  final String fontFamily;
+  final String? fontFamily;
   final FontStyle fontStyle;
 
   @override
@@ -33,6 +34,7 @@ class CustomText extends StatelessWidget {
         fontWeight: fontWeight,
         fontFamily: fontFamily,
         letterSpacing: letterSpacing,
+        fontStyle: fontStyle,
       ),
     );
   }

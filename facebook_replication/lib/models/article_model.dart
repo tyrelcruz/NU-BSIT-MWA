@@ -10,13 +10,13 @@ class Article {
     required this.title,
     required this.body,
   });
-}
 
-factory Article.fromJson(Map<String, dynamic> json) {
-  return Article(
-    userId: json['userId'],
-    id: json['id'],
-    title: json['title'],
-    body: json['body'],
-  );
+  factory Article.fromJson(Map<String, dynamic> json) {
+    return Article(
+      userId: json['userId'],
+      id: json['id'],
+      title: json['title'],
+      body: json['body'],
+    );
+  }
 }

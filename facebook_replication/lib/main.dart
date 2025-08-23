@@ -8,12 +8,16 @@ import 'screens/home_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]).then((
-    _,
-  ) async {
+
+  try {
     await dotenv.load(fileName: 'assets/.env');
-    runApp(const MainApp());
-  });
+  } catch (e) {
+    print('Error loading .env file: $e');
+  }
+
+  await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+
+  runApp(const MainApp());
 }
 
 class MainApp extends StatelessWidget {
@@ -35,7 +39,7 @@ class MainApp extends StatelessWidget {
             darkTheme: ThemeData.dark(),
             themeMode: themeModel.isDark ? ThemeMode.dark : ThemeMode.light,
             title: 'Blog App',
-            initialRoute: '/home',
+            home: const HomeScreen(),
             routes: {'/home': (context) => const HomeScreen()},
           );
         },
