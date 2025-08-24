@@ -1,0 +1,125 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
+import '../providers/theme_provider.dart';
+import '../widgets/custom_text.dart';
+
+class SettingsScreen extends StatelessWidget {
+  const SettingsScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final themeModel = context.watch<ThemeProvider>();
+    final isDark = themeModel.isDark;
+
+    return Scaffold(
+      backgroundColor: isDark
+          ? Colors.grey[900]
+          : Colors.white, // Theme-aware background
+      appBar: AppBar(
+        backgroundColor: isDark
+            ? Colors.grey[900]
+            : Colors.white, // Theme-aware app bar
+        elevation: 0,
+        title: CustomText(
+          text: 'Settings',
+          fontSize: 20.sp,
+          fontWeight: FontWeight.w600,
+          color: isDark ? Colors.white : Colors.black87,
+        ),
+        iconTheme: IconThemeData(color: isDark ? Colors.white : Colors.black87),
+        leading: IconButton(
+          icon: Icon(
+            Icons.arrow_back,
+            color: isDark ? Colors.white : Colors.black87,
+          ),
+          onPressed: () => Navigator.of(context).pop(),
+        ),
+      ),
+      body: ListView(
+        padding: EdgeInsets.all(20.w),
+        children: [
+          // Settings Header
+          SizedBox(height: 10.h),
+
+          // Appearance Section
+          _buildSectionHeader('Appearance', isDark),
+
+          // Dark Mode Setting
+          _buildSettingTile(
+            icon: Icons.dark_mode,
+            title: 'Dark Mode',
+            subtitle: 'Switch between light and dark theme',
+            isDark: isDark,
+            trailing: Switch(
+              value: themeModel.isDark,
+              onChanged: (_) => themeModel.toggleTheme(),
+              activeColor: Colors.blue[600],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildSectionHeader(String title, bool isDark) {
+    return Padding(
+      padding: EdgeInsets.only(bottom: 12.h, top: 8.h),
+      child: CustomText(
+        text: title,
+        fontSize: 16.sp,
+        fontWeight: FontWeight.bold,
+        color: isDark ? Colors.white : Colors.black87,
+        textAlign: TextAlign.left,
+      ),
+    );
+  }
+
+  Widget _buildSettingTile({
+    required IconData icon,
+    required String title,
+    required String subtitle,
+    required bool isDark,
+    Widget? trailing,
+    VoidCallback? onTap,
+  }) {
+    return Container(
+      margin: EdgeInsets.only(bottom: 8.h),
+      decoration: BoxDecoration(
+        color: isDark ? Colors.grey[800] : Colors.white,
+        borderRadius: BorderRadius.circular(12.r),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withValues(alpha: 0.1),
+            blurRadius: 10,
+            offset: const Offset(0, 2),
+          ),
+        ],
+      ),
+      child: ListTile(
+        leading: Container(
+          padding: EdgeInsets.all(8.w),
+          decoration: BoxDecoration(
+            color: Colors.blue[100],
+            borderRadius: BorderRadius.circular(8.r),
+          ),
+          child: Icon(icon, color: Colors.blue[700], size: 20.sp),
+        ),
+        title: CustomText(
+          text: title,
+          fontSize: 16.sp,
+          fontWeight: FontWeight.w600,
+          color: isDark ? Colors.white : Colors.black87,
+        ),
+        subtitle: CustomText(
+          text: subtitle,
+          fontSize: 14.sp,
+          fontWeight: FontWeight.normal,
+          color: isDark ? Colors.grey[300] : Colors.black54,
+        ),
+        trailing: trailing,
+        onTap: onTap,
+      ),
+    );
+  }
+}
