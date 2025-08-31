@@ -18,17 +18,17 @@ class ArticleDetailScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: isDark
           ? Colors.grey[900]
-          : Colors.white, // White background for light mode
+          : Colors.white, 
       body: CustomScrollView(
         slivers: [
-          // Custom App Bar
+
           SliverAppBar(
             expandedHeight: 200.h,
             floating: false,
             pinned: true,
             backgroundColor: isDark
                 ? Colors.grey[900]
-                : Colors.white, // White app bar for light mode
+                : Colors.white,
             elevation: 0,
             leading: IconButton(
               icon: Icon(
@@ -51,7 +51,6 @@ class ArticleDetailScreen extends StatelessWidget {
                 ),
                 child: Stack(
                   children: [
-                    // Decorative elements
                     Positioned(
                       top: 80.h,
                       right: 30.w,
@@ -76,7 +75,7 @@ class ArticleDetailScreen extends StatelessWidget {
                         ),
                       ),
                     ),
-                    // Main illustration area
+                   
                     Center(
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,

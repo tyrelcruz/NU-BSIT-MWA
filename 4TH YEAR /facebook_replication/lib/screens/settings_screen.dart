@@ -15,11 +15,11 @@ class SettingsScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: isDark
           ? Colors.grey[900]
-          : Colors.white, // Theme-aware background
+          : Colors.white, 
       appBar: AppBar(
         backgroundColor: isDark
             ? Colors.grey[900]
-            : Colors.white, // Theme-aware app bar
+            : Colors.white, 
         elevation: 0,
         title: CustomText(
           text: 'Settings',
@@ -39,13 +39,11 @@ class SettingsScreen extends StatelessWidget {
       body: ListView(
         padding: EdgeInsets.all(20.w),
         children: [
-          // Settings Header
+  
           SizedBox(height: 10.h),
 
-          // Appearance Section
+         
           _buildSectionHeader('Appearance', isDark),
-
-          // Dark Mode Setting
           _buildSettingTile(
             icon: Icons.dark_mode,
             title: 'Dark Mode',

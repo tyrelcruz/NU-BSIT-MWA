@@ -36,10 +36,10 @@ class _ArticleScreenState extends State<ArticleScreen> {
     try {
       final response = await ArticleService().getArticles();
 
-      // Map raw list to typed models once
+
       _allArticles = response.map((e) => Article.fromJson(e)).toList();
 
-      // Add a sample article for testing
+ 
       _allArticles.insert(
         0,
         Article(
@@ -54,8 +54,7 @@ class _ArticleScreenState extends State<ArticleScreen> {
       _filteredArticles = _allArticles;
       return _allArticles;
     } catch (e) {
-      // Error fetching articles, using sample data
-      // Return sample data if API fails
+
       _allArticles = [
         Article(
           userId: 999,
